@@ -1,0 +1,40 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
+int finder(int, int*);
+#define size 10
+int index[] = { 0 };
+int main()
+{
+	int arr[size] = { 12,45,62,12,99,83,23,12,72,37 };
+	int num = 0;
+	for (int i = 0; i < size; i++)
+		printf("%d ", arr[i]);
+	printf("\n찾을 값? ");
+	scanf("%d", &num);
+
+	int n = finder(num, arr);
+	finder(num, &arr);
+	printf("찾은 항목은 모두 %d개 입니다. \n", n);
+	printf("찾은 항목의 인덱스: ");
+	for (int j = 0; j < n; j++)
+		printf("%d ", index[j]);
+}
+
+int finder(int num, int* arr)
+{
+	int n = 0, m = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (num == arr[i])
+		{
+			index[m] = i;
+			n++;
+			m++;
+		}
+	}
+	return n;
+}
