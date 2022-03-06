@@ -1,2 +1,2 @@
 # study
-Start at 2022.03.06
+Start on 2022.03.06
