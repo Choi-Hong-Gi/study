@@ -6,73 +6,77 @@ import sys
 now = time.localtime(time.time())
 b_name = ("C:/python/account_book.csv")
 column_h = ["날짜","시간","내용", "입금", "출금","잔고"]
-print("\n가계부 생성 및 입력 프로그램입니다.")
-
-if not os.path.exists(b_name):
-    balance = 0
-    while 1:
+print("\n가계부 생성 및 입력 프로그램입니다.\n\n*주의* 임의로 프로그램을 종료하실 경우 작성하신 사항이 누락 될 수 있습니다.")
+while 1:
+    if not os.path.exists(b_name):
+        balance = 0
         date = ("%02d.%02d.%02d" %(now.tm_year, now.tm_mon, now.tm_mday))
         time = ("%02d:%02d:%02d" %(now.tm_hour, now.tm_min, now.tm_sec))
-        contents = str(input("\n가계부 내용 입력: "))
         try:
-            select_ = int(input("\n입금은 \"1\", 출금은 \"2\" 입력: "))
+            select_ = int(input("\n입금은 \"1\", 출금은 \"2\", 종료는 \"3\" 입력: "))
             if select_ == 1:
                 deposit = int(input("\n입금액: "))
                 withdraw = 0
             elif select_ == 2:
                 withdraw = int(input("\n출금액: "))
                 deposit = 0
-            else:
-                print("\n잘못된 입력입니다. \n\n가계부 생성 및 입력을 종료합니다.")
+            elif select_ == 3:
+                print("\n가계부 생성 및 입력을 종료합니다.")
                 break
+            else:
+                print("\n잘못된 입력입니다.")
+                continue
         except:
-            print("\n잘못된 입력입니다.\n\n가계부 생성 및 입력을 중지합니다.")
-            sys.exit()
+            print("\n잘못된 입력입니다.")
+            continue
         if deposit >= 0 and withdraw >=0:
             with open(b_name, "w", newline="") as logfile:
+                contents = str(input("\n가계부 내용 입력: "))
                 csvwriter = csv.writer(logfile)
                 csvwriter.writerow(column_h)
                 balance = balance + deposit - withdraw
                 column_list = [date, time, contents, deposit, withdraw, balance]
                 csvwriter.writerow(column_list)
-                print("\n가계부 생성 및 입력이 완료되었습니다.")
-                break
+                print("\n가계부 생성 및 입력이 완료되었습니다.\n\n계속 하시려면 >>")
+                continue
         else:
-            print("\n입출금액으로 음수를 입력하실 수 없습니다. 가계부 생성을 중지합니다.")
-            sys.exit()
-else:
-    b_name = ("C:/python/account_book.csv")
-    with open(b_name, "r", newline = "") as lp:
-        a = csv.reader(lp)
-        for line in a:
-            line
-        balance = int(line[5])
-    with open(b_name, "a", newline="") as logfile:
-        csvwriter = csv.writer(logfile)
-        while 1:
+            print("\n입출금액으로 음수를 입력하실 수 없습니다.")
+            continue
+    else:
+        b_name = ("C:/python/account_book.csv")
+        with open(b_name, "r", newline = "") as lp:
+            a = csv.reader(lp)
+            for line in a:
+                line
+            balance = int(line[5])
+        with open(b_name, "a", newline="") as logfile:
+            csvwriter = csv.writer(logfile)
             date = ("%02d.%02d.%02d" %(now.tm_year, now.tm_mon, now.tm_mday))
             time = ("%02d:%02d:%02d" %(now.tm_hour, now.tm_min, now.tm_sec))
-            contents = str(input("\n가계부 내용 입력: "))
             try:
-                select_ = int(input("\n입금은 \"1\", 출금은 \"2\" 입력: "))
+                select_ = int(input("\n입금은 \"1\", 출금은 \"2\", 종료는 \"3\" 입력: "))
                 if select_ == 1:
                     deposit = int(input("\n입금액: "))
                     withdraw = 0
                 elif select_ == 2:
                     withdraw = int(input("\n출금액: "))
                     deposit = 0
-                else:
-                    print("\n잘못된 입력입니다.\n\n가계부 생성 및 입력을 종료합니다.")
+                elif select_ == 3:
+                    print("\n가계부 입력을 종료합니다.")
                     break
+                else:
+                    print("\n잘못된 입력입니다.")
+                    continue
             except:
-                print("\n잘못된 입력입니다.\n\n가계부 입력을 중지합니다.")
-                sys.exit()
+                print("\n잘못된 입력입니다.")
+                continue
             if deposit >= 0 and withdraw >=0:
+                contents = str(input("\n가계부 내용 입력: "))
                 balance = balance + deposit - withdraw
                 column_list = [date, time, contents, deposit, withdraw, balance]
                 csvwriter.writerow(column_list)
-                print("\n가계부 입력이 완료되었습니다.")
-                break
+                print("\n가계부 입력이 완료되었습니다.\n\n계속 하시려면 >>")
+                continue
             else:
-                print("\n입출금액으로 음수를 입력하실 수 없습니다. 가계부 입력을 중지합니다.")
-                sys.exit()
+                print("\n입출금액으로 음수를 입력하실 수 없습니다.")
+                continue
