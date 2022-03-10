@@ -1,0 +1,9 @@
+# 딕셔너리 값 순차 입력
+
+dic_test = {}
+j=10
+for i in range(0, 11):
+    dic_test[i] = j
+    j+=1
+    
+print(dic_test)
