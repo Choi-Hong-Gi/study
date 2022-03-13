@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class R_s_p_game
+{
+
+	public static void main(String[] args)
+	{
+		Scanner scan = new Scanner(System.in);
+		final int SCISSORS = 1;
+		final int ROCK = 2;
+		final int PAPER = 3;
+		System.out.print("가위(1)바위(2)보(3) 입력 >>");
+		int rsp_user = scan.nextInt();
+		int rsp_com = ((int)(Math.random()*3)+1);
+		String result = "";
+                if (rsp_user == SCISSORS)
+				{
+					if(rsp_com == SCISSORS)
+						result = "비겼습니다.";
+					else if (rsp_com == ROCK)
+						result = "컴퓨터가 이겼습니다.";
+					else
+						result = "Me가 이겼습니다.";
+				}
+				else if (rsp_user == ROCK)
+				{
+					if(rsp_com == SCISSORS)
+						result = "Me가 이겼습니다.";
+					else if (rsp_com == ROCK)
+						result = "비겼습니다.";
+					else
+						result = "컴퓨터가 이겼습니다.";
+				}
+				else if (rsp_user == PAPER)
+				{
+					if(rsp_com == SCISSORS)
+						result = "컴퓨터가 이겼습니다.";
+					else if (rsp_com == ROCK)
+						result = "Me가 이겼습니다.";
+					else
+						result = "비겼습니다.";
+				}
+				else
+					System.out.println("잘못 입력하셨습니다.");
+
+			    System.out.println("Me: " + (rsp_user == 1? "가위":rsp_user==2?"바위":"보"));
+			    System.out.println("Computer: " + (rsp_com == 1? "가위":rsp_com==2?"바위":"보"));
+			    System.out.println("The result of the game: " + result);
+	}
+
+}
