@@ -1,0 +1,53 @@
+
+public class Lottos {
+
+	public static void prtArr(int[] x) {     // 배열 출력
+		for (int i = 0; i < x.length; i++)
+			System.out.print(x[i]+" ");
+		System.out.println();
+	}
+
+//---------------------------------------------------------
+
+	public static void sorting(int[] arr) {    // 오름차순 정리
+		for(int i = 0; i < arr.length-1; i++) {
+			int m = i;
+			for(int j = i+1; j < arr.length; j++)
+				if(arr[m] > arr[j])
+					m = j;
+			int tmp = arr[i];
+			arr[i] = arr[m];
+			arr[m] = tmp;
+		}
+	}
+
+//---------------------------------------------------------
+
+	public static int[] distRandNum(int x) { // 1~45 중 중복없는 여섯 숫자
+		int[] arr;
+		final int N = x;
+		arr = new int[N];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = (int)(Math.random()*45+1);
+			for(int j=0; j < i; j++)
+				if(arr[i] == arr[j])
+					i--;			
+		}
+		return arr;
+	}
+
+//--------------------------------------------------------- 메인함수 ↓
+
+	public static void main(String[] args) {
+
+		int[] arr = distRandNum(6);
+
+		prtArr(arr); // 중복 없는 6 숫자
+
+		sorting(arr);// 오름차순 정리
+
+		prtArr(arr);// 중복 없는 6 숫자 오름차순
+		
+		// 로또 번호 출력하기
+	}
+}
