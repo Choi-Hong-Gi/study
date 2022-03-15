@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class Research {
+
+	public static void prtList() {
+		System.out.println("1. 영화감상    2. 음악감상    3. 싸이클링    4. 낚시하기 ");		
+		System.out.print("선택>> ");		
+	}
+  //-----------------------------------------------------------------------------------
+	public static void graph(int x, int[] y) {
+		int t = y[x];
+		for(int j=0;j<t;j++)
+			System.out.print("▒▒");
+		System.out.println();
+	}
+  //-----------------------------------------------------------------------------------
+	public static void main(String[] args) {
+		int[] hubby;
+		hubby = new int[4];
+
+		Scanner scan = new Scanner(System.in);
+		System.out.println("당신의 취미는? ");
+		for(int i=1; i<=10;i++) {
+			prtList();
+			int s = scan.nextInt();
+			if(s>=1 && s<=4) {
+				hubby[s-1] += 1;
+			}
+			else {
+				System.out.println("잘못된 대답입니다.\n");
+				i--;
+			}	
+		}
+		
+		System.out.println();
+		
+		System.out.print("영화감상: ");
+		graph(0, hubby);
+		System.out.print("음악감상: ");
+		graph(1, hubby);
+		System.out.print("싸이클링: ");
+		graph(2, hubby);
+		System.out.print("낚시하기: ");
+		graph(3, hubby);
+	}
+}
+
