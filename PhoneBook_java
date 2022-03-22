@@ -1,0 +1,89 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class CreatePhoneBook{
+	static String[] name;
+	static String[] tel;
+	
+	CreatePhoneBook(int num){
+		name = new String[num];
+		tel = new String[num];
+	}
+}
+
+class Insert{
+	Insert(int i, String inputName, String inputTel) {
+		CreatePhoneBook.name[i] = inputName;
+		CreatePhoneBook.tel[i] = inputTel;
+	}
+}
+
+
+public class PhoneBook {
+
+	public static void main(String[] args) {
+		
+//		Scanner scan = new Scanner(System.in);
+
+//		System.out.print("인원수 입력 >> ");
+//		int num = scan.nextInt();
+//
+//		String[] name = new String[num];
+//		String[] tel = new String[num];
+//
+//		for(int i = 0; i <num;i++) {
+//			System.out.print("이름과 전화번호(이름과 전화번호는 빈칸없이 입력)>> ");
+//			String inputName = scan.next();
+//			String inputTel = scan.next();
+//			name[i] = inputName;
+//			tel[i] = inputTel;
+//		}
+//		System.out.println("저장되었습니다.");
+//
+//		while(true) {
+//			System.out.print("검색할 이름 >> ");
+//			String searchName;
+//			searchName = scan.next();
+//			
+//			if(searchName.equals("그만")) {
+//				System.out.println("종료합니다.");
+//				break;
+//			}
+//			else if(Arrays.asList(name).contains(searchName))
+//				System.out.println(searchName + "의 전화번호는 " + tel[Arrays.asList(name).indexOf(searchName)] + "입니다.");
+//			else
+//				System.out.println(searchName+"은(는) 없습니다.");
+//		}
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("인원수 입력 >> ");
+		int num = scan.nextInt();
+		
+		CreatePhoneBook phoneBook = new CreatePhoneBook(num);
+		
+		for (int i = 0; i < num; i++) {
+			System.out.print("이름과 전화번호(이름과 전화번호는 빈칸없이 입력)>> ");
+			String inputName = scan.next();
+			String inputTel = scan.next();
+			Insert book = new Insert(i, inputName, inputTel);
+		}
+		System.out.println("저장되었습니다.");
+
+		while(true) {
+			System.out.print("검색할 이름 >> ");
+			String searchName;
+			searchName = scan.next();
+
+			if(searchName.equals("그만")) {
+				System.out.println("종료합니다.");
+				break;
+			}
+			else if(Arrays.asList(phoneBook.name).contains(searchName))
+				System.out.println(searchName + "의 전화번호는 " + phoneBook.tel[Arrays.asList(phoneBook.name).indexOf(searchName)] + "입니다.");
+			else
+				System.out.println(searchName+"은(는) 없습니다.");
+		}
+
+		
+	}
+}
